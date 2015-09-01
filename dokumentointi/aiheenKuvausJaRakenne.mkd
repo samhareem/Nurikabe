@@ -1,0 +1,10 @@
+##Nurikabe
+
+###Aihe: Nurikabe
+
+Toteutetaan graafinen käyttöliittymä jolla voidaan ratkoa Nurikabe-ongelmia. Nurikabea pelataan ruudukolla. Pelin alussa suurin osa ruuduista on valkoisia, ja muutamat näistä sisältävät luvun. Luku kertoo kuinka monesta valkoisesta ruudusta ns. saari koostuu. Nurikabe ratkaistaan värjäämällä ruutuja mustaksi niin että muodostuu yhtenäinen mustien ruutujen "joki", joka jakaa ruudukon oikeankokoisiksi saariksi. 
+
+###Käyttäjät: Kaikki kiinnostuneet
+
+
+
