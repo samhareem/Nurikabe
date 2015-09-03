@@ -13,8 +13,10 @@ import java.io.InputStream;
  */
 public class Board {
     private char[][] board;
+    private int numberOfMistakes;
     
     public Board(String levelPath) {
+        this.numberOfMistakes = 0;
         InputStream levelInfo = this.getClass().getResourceAsStream(levelPath);
         try {
             initializeBoard(levelInfo);
@@ -49,5 +51,13 @@ public class Board {
     
     public void setGridStatus(int indexX, int indexY, char newStatus) {
         this.board[indexY][indexX] = newStatus;
+    }
+    
+    public int getNumberOfMistakes() {
+        return this.numberOfMistakes;
+    }
+    
+    public void addMistake() {
+        this.numberOfMistakes++;
     }
 }
