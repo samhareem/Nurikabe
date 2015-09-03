@@ -42,4 +42,12 @@ public class Board {
             }
         }
     }
+    
+    public char getGridStatus(int indexX, int indexY) {
+        return this.board[indexY][indexX];
+    }
+    
+    public void setGridStatus(int indexX, int indexY, char newStatus) {
+        this.board[indexY][indexX] = newStatus;
+    }
 }
