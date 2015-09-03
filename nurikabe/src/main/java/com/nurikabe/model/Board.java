@@ -12,44 +12,27 @@ import java.io.InputStream;
  * @author samharju
  */
 public class Board {
-    private char[][] board;
+    private int[][] board;
     private int numberOfMistakes;
     
-    public Board(String levelPath) {
+    public Board() {
         this.numberOfMistakes = 0;
-        InputStream levelInfo = this.getClass().getResourceAsStream(levelPath);
-        try {
-            initializeBoard(levelInfo);
-        } catch (IOException e) { 
-            System.out.println("Error with level info"); 
-            return; 
-        }
-        printBoard();
+        this.board = new int[9][9];
     }
     
-   private boolean initializeBoard(InputStream source) throws IOException {
-        board = new char[9][9];
-        for (int y = 0; y < 9; y++) {
-            for (int x = 0; x < 9; x++) {
-                board[x][y] = (char) source.read();
-            }
-        }
-        return true;
-    }
-    
-    private void printBoard() {
+    public void printBoard() {
         for (int indexY = 0; indexY < this.board.length; indexY++) {
             for (int indexX = 0; indexX < this.board[indexY].length; indexX++) {
-                System.out.print(this.board[indexY][indexX]);
+                System.out.println(this.board[indexY][indexX]);
             }
         }
     }
     
-    public char getGridStatus(int indexX, int indexY) {
+    public int getGridStatus(int indexX, int indexY) {
         return this.board[indexY][indexX];
     }
     
-    public void setGridStatus(int indexX, int indexY, char newStatus) {
+    public void setGridStatus(int indexX, int indexY, int newStatus) {
         this.board[indexY][indexX] = newStatus;
     }
     

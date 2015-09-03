@@ -7,7 +7,7 @@ package com.nurikabe.main;
 
 import com.nurikabe.controller.*;
 
-class main {
+class Main {
     
     public static void main(String args[]) {
         Nurikabe game = new Nurikabe();
