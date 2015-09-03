@@ -13,9 +13,10 @@ public class Nurikabe {
     private Board gameBoard;
     
     public void initialize() {
-        this.gameBoard = new Board();
-    } 
-    
+        String levelPath = "/levels/1.txt";
+        this.gameBoard = new Board(levelPath);
+    }
+ 
 }
 
 
