@@ -5,6 +5,7 @@
  */
 package com.nurikabe.model;
 
+import java.util.Random;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,6 +19,7 @@ import static org.junit.Assert.*;
  */
 public class BoardTest {
     Board testBoard;
+    Random numGenerator;
     
     public BoardTest() {
     }
@@ -33,6 +35,7 @@ public class BoardTest {
     @Before
     public void setUp() {
         testBoard = new Board();
+        numGenerator = new Random();
     }
     
     @Test
@@ -48,12 +51,22 @@ public class BoardTest {
     
     @Test
     public void largeNumberOfMistakesCorrectlyAdded() {
-        int n = 100;
+        int n = numGenerator.nextInt();
+        for (int i = 0; i < n; i++) {
+            testBoard.addMistake();
+        }
+        assertEquals(testBoard.getNumberOfMistakes(), n);
+    }
+    
+    @Test
+    public void mistakesResetProperly() {
+        int n = numGenerator.nextInt();
         while (n > 0) {
             testBoard.addMistake();
             n--;
         }
-        assertEquals(testBoard.getNumberOfMistakes(), 100);
+        testBoard.resetMistakes();
+        assertEquals(testBoard.getNumberOfMistakes(), 0);
     }
     
     @After

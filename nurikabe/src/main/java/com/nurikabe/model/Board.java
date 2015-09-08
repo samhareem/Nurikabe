@@ -40,4 +40,8 @@ public class Board {
     public void addMistake() {
         this.numberOfMistakes++;
     }
+    
+    public void resetMistakes() {
+        this.numberOfMistakes = 0;
+    }
 }
