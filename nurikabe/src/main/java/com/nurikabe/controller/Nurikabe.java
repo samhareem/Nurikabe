@@ -15,11 +15,15 @@ public class Nurikabe {
     private Reader reader;
     
     public void initialize() {
-        String levelPath = "/levels/1.txt";
         this.gameBoard = new Board();
-        this.reader = new Reader(levelPath);
+        this.reader = new Reader();
+        setLevelFilePath("/levels/1.txt");
         setBoard();
         gameBoard.printBoard();
+    }
+    
+    private void setLevelFilePath(String Path) {
+        reader.setFilePath(Path);
     }
     
     private void setBoard() {

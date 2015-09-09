@@ -17,7 +17,10 @@ import java.util.ArrayList;
 public class Reader {
     private String filePath;
     
-    public Reader(String filePath) {
+    public Reader() {
+    }
+    
+    public void setFilePath(String filePath) {
         this.filePath = filePath;
     }
     
