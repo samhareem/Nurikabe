@@ -24,6 +24,10 @@ public class Reader {
         this.filePath = filePath;
     }
     
+    public String getFilePath() {
+        return this.filePath;
+    }
+    
     public ArrayList<Integer> readFile() {
         BufferedReader in = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(filePath)));
         ArrayList<Integer> contents = new ArrayList<>();

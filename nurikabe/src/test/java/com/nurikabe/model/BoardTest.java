@@ -51,7 +51,7 @@ public class BoardTest {
     
     @Test
     public void largeNumberOfMistakesCorrectlyAdded() {
-        int n = numGenerator.nextInt();
+        int n = numGenerator.nextInt(10000);
         for (int i = 0; i < n; i++) {
             testBoard.addMistake();
         }
@@ -60,7 +60,7 @@ public class BoardTest {
     
     @Test
     public void mistakesResetProperly() {
-        int n = numGenerator.nextInt();
+        int n = numGenerator.nextInt(10000);
         while (n > 0) {
             testBoard.addMistake();
             n--;
