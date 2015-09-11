@@ -11,14 +11,17 @@ import java.util.ArrayList;
  * @author samharju
  */
 public class Nurikabe {
-    private Board gameBoard;
-    private Reader reader;
-    private InputScanner scanner;
+    private final Board gameBoard;
+    private final Reader reader;
+    private final InputScanner scanner;
     
-    public void initialize() {
+    public Nurikabe() {
         this.gameBoard = new Board();
         this.reader = new Reader();
         this.scanner = new InputScanner();
+    }
+    
+    public void start() {
         setLevelFilePath("/levels/1.txt");
         setBoard();
         gameBoard.printBoard();
@@ -33,8 +36,8 @@ public class Nurikabe {
             if (!checkNumber(y)) {
                 continue;
             }
-            if (gameBoard.getGridStatus(x-1, y-1) == 0) {
-                gameBoard.setGridStatus(x-1, y-1, 100);
+            if (gameBoard.getGridStatus(x - 1, y - 1) == 0) {
+                gameBoard.setGridStatus(x - 1, y - 1, 100);
             } else {
                 gameBoard.addMistake();
                 System.out.println("Wrong move!");
@@ -56,8 +59,8 @@ public class Nurikabe {
         return true;
     }
     
-    private void setLevelFilePath(String Path) {
-        reader.setFilePath(Path);
+    private void setLevelFilePath(String path) {
+        reader.setFilePath(path);
     }
     
     private void setBoard() {

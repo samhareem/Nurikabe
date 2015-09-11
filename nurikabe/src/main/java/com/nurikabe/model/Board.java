@@ -9,7 +9,7 @@ package com.nurikabe.model;
  * @author samharju
  */
 public class Board {
-    private int[][] board;
+    private final int[][] board;
     private int numberOfMistakes;
     
     public Board() {

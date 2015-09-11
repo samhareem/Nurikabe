@@ -11,7 +11,7 @@ class Main {
     
     public static void main(String args[]) {
         Nurikabe game = new Nurikabe();
-        game.initialize();
+        game.start();
     }
    
 }    
