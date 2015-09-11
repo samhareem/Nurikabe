@@ -20,8 +20,15 @@ public class Board {
     public void printBoard() {
         for (int indexY = 0; indexY < this.board.length; indexY++) {
             for (int indexX = 0; indexX < this.board[indexY].length; indexX++) {
-                System.out.println(this.board[indexY][indexX]);
+                if (this.board[indexY][indexX] == 0 || this.board[indexY][indexX] == 1) {
+                    System.out.print("O ");
+                } else if (this.board[indexY][indexX] == 100) {
+                    System.out.print("X ");
+                } else {
+                    System.out.print((this.board[indexY][indexX] - 1) + " ");
+                }
             }
+            System.out.print("\n");
         }
     }
     
