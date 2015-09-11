@@ -42,9 +42,11 @@
             <configuration>
                 <targetClasses>
                     <param>com.nurikabe.model.*</param>
+                    <param>com.nurikabe.controller.*</param>
                 </targetClasses>
                 <targetTests>
                     <param>com.nurikabe.model.*</param>
+                    <param>com.nurikabe.controller.*</param>
                 </targetTests>
             </configuration>
         </plugin>
