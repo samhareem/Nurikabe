@@ -32,6 +32,17 @@ public class Board {
         }
     }
     
+    public boolean isComplete() {
+        for (int y = 0; y < 9; y++) {
+            for (int x = 0; x < 9; x++) {
+                if (board[y][x] == 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    
     public int getGridStatus(int indexX, int indexY) {
         return this.board[indexY][indexX];
     }

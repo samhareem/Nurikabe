@@ -43,7 +43,7 @@ public class Nurikabe {
                 System.out.println("Wrong move!");
                 continue;
             }
-            if (checkIfComplete()) {
+            if (gameBoard.isComplete()) {
                 break;
             }
             gameBoard.printBoard();
@@ -68,17 +68,6 @@ public class Nurikabe {
         for (int i = 0; i < boardInfo.size(); i++) {
             gameBoard.setGridStatus(i % 9, i / 9, boardInfo.get(i));
         }
-    }
-    
-    private boolean checkIfComplete() {
-        for (int y = 0; y < 9; y++) {
-            for (int x = 0; x < 9; x++) {
-                if (this.gameBoard.getGridStatus(x, y) == 0) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
     
     private int getIntegerInput() {

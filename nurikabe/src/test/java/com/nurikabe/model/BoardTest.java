@@ -69,6 +69,30 @@ public class BoardTest {
         assertEquals(testBoard.getNumberOfMistakes(), 0);
     }
     
+    @Test
+    public void isCompleteReturnsTrueWhenBoardIsComplete() {
+        for (int y = 0; y < 9; y++) {
+            for (int x = 0; x < 9; x++) {
+                testBoard.setGridStatus(x, y, numGenerator.nextInt(20) + 1);
+            }
+        }
+        assertEquals(testBoard.isComplete(), true);
+    }
+    
+    @Test
+    public void isCompleteReturnsFalseWhenBoardIsIncomplete() {
+        for (int y = 0; y < 9; y++) {
+            for (int x = 0; x < 9; x++) {
+                testBoard.setGridStatus(x, y, numGenerator.nextInt(20) + 1);
+            }
+        }
+        int unsolvedGrids = numGenerator.nextInt(20) + 1;
+        for (int a = 0; a < unsolvedGrids; a++) {
+            testBoard.setGridStatus(numGenerator.nextInt(9), numGenerator.nextInt(9), 0);
+        }
+        assertEquals(testBoard.isComplete(), false);
+    }
+    
     @After
     public void tearDown() {
     }
