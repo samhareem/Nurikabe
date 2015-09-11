@@ -13,13 +13,47 @@ import java.util.ArrayList;
 public class Nurikabe {
     private Board gameBoard;
     private Reader reader;
+    private InputScanner scanner;
     
     public void initialize() {
         this.gameBoard = new Board();
         this.reader = new Reader();
+        this.scanner = new InputScanner();
         setLevelFilePath("/levels/1.txt");
         setBoard();
         gameBoard.printBoard();
+        while (true) {   
+            System.out.println("Choose x (1-9):");
+            int x = getIntegerInput();
+            if (!checkNumber(x)) {
+                continue;
+            }
+            System.out.println("Choose y (1-9):");
+            int y = getIntegerInput();
+            if (!checkNumber(y)) {
+                continue;
+            }
+            if (gameBoard.getGridStatus(x-1, y-1) == 0) {
+                gameBoard.setGridStatus(x-1, y-1, 100);
+            } else {
+                gameBoard.addMistake();
+                System.out.println("Wrong move!");
+                continue;
+            }
+            if (checkIfComplete()) {
+                break;
+            }
+            gameBoard.printBoard();
+        }
+        System.out.println("Game won!");
+    }
+
+    private boolean checkNumber(int x) {
+        if (x < 1 || x > 9) {
+            System.out.println("Invalid number!");
+            return false;
+        }
+        return true;
     }
     
     private void setLevelFilePath(String Path) {
@@ -31,7 +65,26 @@ public class Nurikabe {
         for (int i = 0; i < boardInfo.size(); i++) {
             gameBoard.setGridStatus(i % 9, i / 9, boardInfo.get(i));
         }
-    } 
+    }
+    
+    private boolean checkIfComplete() {
+        for (int y = 0; y < 9; y++) {
+            for (int x = 0; x < 9; x++) {
+                if (this.gameBoard.getGridStatus(x, y) == 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    
+    private int getIntegerInput() {
+        int input;
+        try {
+            input = scanner.readInt();
+        } catch (Exception noValidNumber) { return -1; }
+        return input;
+    }
 }
 
 
