@@ -22,20 +22,15 @@ public class Nurikabe {
     }
     
     public void start() {
-        setLevelFilePath("/levels/1.txt");
+        int level = chooseLevel();
+        setLevelFilePath("/levels/" + level + ".txt");
         setBoard();
         gameBoard.printBoard();
         while (true) {   
             System.out.println("Choose x (1-9):");
-            int x = getIntegerInput();
-            if (!checkNumber(x)) {
-                continue;
-            }
+            int x = getGridCoordinate();
             System.out.println("Choose y (1-9):");
-            int y = getIntegerInput();
-            if (!checkNumber(y)) {
-                continue;
-            }
+            int y = getGridCoordinate();
             if (gameBoard.getGridStatus(x - 1, y - 1) == 0) {
                 gameBoard.setGridStatus(x - 1, y - 1, 100);
             } else {
@@ -51,6 +46,27 @@ public class Nurikabe {
         System.out.println("Game won!");
     }
 
+    private int chooseLevel() {
+        int level;
+        while (true) {
+            System.out.println("Choose level?");
+            level = getIntegerInput();
+            if (level != -1) {
+                return level;
+            } else {
+                System.out.println("Invalid level");
+            }
+        }
+    }
+    
+    private int getGridCoordinate() {
+        while (true) {
+            int ret = getIntegerInput();
+            if (checkNumber(ret)) {
+                return ret;
+            }
+        }
+    }
     private boolean checkNumber(int x) {
         if (x < 1 || x > 9) {
             System.out.println("Invalid number!");
