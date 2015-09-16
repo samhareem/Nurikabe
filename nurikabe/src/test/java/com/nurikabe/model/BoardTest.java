@@ -5,6 +5,7 @@
  */
 package com.nurikabe.model;
 
+import java.util.ArrayList;
 import java.util.Random;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -70,26 +71,41 @@ public class BoardTest {
     }
     
     @Test
-    public void isCompleteReturnsTrueWhenBoardIsComplete() {
+    public void setBoardMethodInitializesBoardArrayCorrectly() {
+        int testNumber = numGenerator.nextInt(100);
+        ArrayList<Integer> testBoardInfo = new ArrayList<Integer>();
+        for (int i = 0; i < 81; i++) {
+            testBoardInfo.add(testNumber);
+        }
+        testBoard.setBoard(testBoardInfo);
         for (int y = 0; y < 9; y++) {
             for (int x = 0; x < 9; x++) {
-                testBoard.setGridStatus(x, y, numGenerator.nextInt(20) + 1);
+                assertEquals(testNumber, testBoard.getGridStatus(x, y));
             }
         }
+    }
+    
+    @Test
+    public void isCompleteReturnsTrueWhenBoardIsComplete() {
+        ArrayList<Integer> testBoardInfo = new ArrayList<Integer>();
+        for (int i = 0; i < 81; i++) {
+            testBoardInfo.add(numGenerator.nextInt(20) + 1);
+        }
+        testBoard.setBoard(testBoardInfo);
         assertEquals(testBoard.isComplete(), true);
     }
     
     @Test
     public void isCompleteReturnsFalseWhenBoardIsIncomplete() {
-        for (int y = 0; y < 9; y++) {
-            for (int x = 0; x < 9; x++) {
-                testBoard.setGridStatus(x, y, numGenerator.nextInt(20) + 1);
-            }
+        ArrayList<Integer> testBoardInfo = new ArrayList<Integer>();
+        for (int i = 0; i < 81; i++) {
+            testBoardInfo.add(numGenerator.nextInt(20) + 1);
         }
         int unsolvedGrids = numGenerator.nextInt(20) + 1;
         for (int a = 0; a < unsolvedGrids; a++) {
-            testBoard.setGridStatus(numGenerator.nextInt(9), numGenerator.nextInt(9), 0);
+            testBoardInfo.set(numGenerator.nextInt(79) + 1, 0);
         }
+        testBoard.setBoard(testBoardInfo);
         assertEquals(testBoard.isComplete(), false);
     }
     

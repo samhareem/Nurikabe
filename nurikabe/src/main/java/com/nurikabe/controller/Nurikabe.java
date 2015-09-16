@@ -24,7 +24,10 @@ public class Nurikabe {
     public void start() {
         int level = chooseLevel();
         setLevelFilePath("/levels/" + level + ".txt");
-        setBoard();
+        if (!setBoard()) {
+            System.out.println("Error with level file");
+            System.exit(0);
+        }
         gameBoard.printBoard();
         while (true) {   
             System.out.println("Choose x (1-9):");
@@ -32,7 +35,7 @@ public class Nurikabe {
             System.out.println("Choose y (1-9):");
             int y = getGridCoordinate();
             if (gameBoard.getGridStatus(x - 1, y - 1) == 0) {
-                gameBoard.setGridStatus(x - 1, y - 1, 100);
+                gameBoard.markGrid(x-1, y-1);
             } else {
                 gameBoard.addMistake();
                 System.out.println("Wrong move!");
@@ -79,11 +82,9 @@ public class Nurikabe {
         reader.setFilePath(path);
     }
     
-    private void setBoard() {
+    private boolean setBoard() {
         ArrayList<Integer> boardInfo = reader.readFile();
-        for (int i = 0; i < boardInfo.size(); i++) {
-            gameBoard.setGridStatus(i % 9, i / 9, boardInfo.get(i));
-        }
+        return gameBoard.setBoard(boardInfo);
     }
     
     private int getIntegerInput() {

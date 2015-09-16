@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package com.nurikabe.model;
+
+import java.util.ArrayList;
+
 /**
  *
  * @author samharju
@@ -15,6 +18,16 @@ public class Board {
     public Board() {
         this.numberOfMistakes = 0;
         this.board = new int[9][9];
+    }
+    
+    public boolean setBoard(ArrayList<Integer> boardInfo) {
+        if (boardInfo.size() != 81) {
+            return false;
+        }
+        for (int i = 0; i < boardInfo.size(); i++) {
+            this.board[i / 9][i % 9] = boardInfo.get(i);
+        }
+        return true;
     }
     
     public void printBoard() {
@@ -47,8 +60,8 @@ public class Board {
         return this.board[indexY][indexX];
     }
     
-    public void setGridStatus(int indexX, int indexY, int newStatus) {
-        this.board[indexY][indexX] = newStatus;
+    public void markGrid(int indexX, int indexY) {
+        this.board[indexY][indexX] = 100;
     }
     
     public int getNumberOfMistakes() {
