@@ -5,6 +5,7 @@
  */
 package com.nurikabe.controller;
 
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -45,6 +46,15 @@ public class ReaderTest {
         String filepath = "filepath/test/file.txt";
         testReader.setFilePath(filepath);
         assertEquals(testReader.getFilePath(), filepath);
+    }
+    
+    @Test
+    public void fileIsReadCorrectly() {
+        testReader.setFilePath("/test/test.txt");
+        ArrayList<Integer> testList = testReader.readFile();
+        for (int i = 0; i < testList.size(); i++) {
+            assertEquals(i, testList.get(i).intValue());
+        }
     }
     
     @After
