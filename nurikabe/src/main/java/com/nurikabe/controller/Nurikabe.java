@@ -5,6 +5,7 @@
  */
 package com.nurikabe.controller;
 import com.nurikabe.model.*;
+import com.nurikabe.GUI.*;
 import java.util.ArrayList;
 /**
  *
@@ -22,6 +23,7 @@ public class Nurikabe {
     }
     
     public void start() {
+        GUI gui = new GUI();
         int level = chooseLevel();
         setLevelFilePath("/levels/" + level + ".txt");
         if (!setBoard()) {
