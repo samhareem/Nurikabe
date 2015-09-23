@@ -7,6 +7,9 @@ package com.nurikabe.GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 
 /**
  *
@@ -17,16 +20,58 @@ public class GUI {
     private JPanel mainPanel;
     private CardLayout mainPanelLayout;
     private JPanel menuPanel;
+    private JPanel gamePanel;
     
      public GUI() {
         initializeFrame();
         initializeMainPanel();
         setupMainMenu();
+        setupBoardView();
         setupAndStartGUI();
 }
      
+     private void setupBoardView() {
+        gamePanel = new JPanel();
+        gamePanel.setLayout(new BoxLayout(gamePanel, BoxLayout.Y_AXIS));
+
+        JPanel boardPanel = new JPanel();
+        GridLayout boardLayout = new GridLayout(9, 9);
+        boardPanel.setLayout(boardLayout);
+
+        ArrayList<JButton> buttons = new ArrayList<JButton>();
+        for (int x = 0; x < 9; x++) {
+            for (int y = 0; y < 9; y++) {
+                JButton button = new JButton();
+                button.setFont(new Font("Arial", Font.BOLD, 20));
+                button.setBackground(Color.white);
+                boardPanel.add(button);
+                buttons.add(button);
+            }
+        }
+
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.X_AXIS));
+        bottomPanel.setBorder(new CompoundBorder(bottomPanel.getBorder(), new EmptyBorder(10,10,10,10)));
+
+        JLabel mistakeCounter = new JLabel("Number of mistakes: 0");
+
+        JButton resetButton = new JButton("Reset");
+
+        JButton exitButton = new JButton("Exit");
+
+        bottomPanel.add(mistakeCounter);
+        bottomPanel.add(Box.createHorizontalGlue());
+        bottomPanel.add(resetButton);
+        bottomPanel.add(Box.createHorizontalGlue());
+        bottomPanel.add(exitButton);
+
+        gamePanel.add(boardPanel);
+        gamePanel.add(bottomPanel);
+     }
+     
      private void setupAndStartGUI() {
          mainPanel.add(menuPanel);
+         mainPanel.add(gamePanel);
          frame.add(mainPanel);
          frame.setVisible(true);
      }
