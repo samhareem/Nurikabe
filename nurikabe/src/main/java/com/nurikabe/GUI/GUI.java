@@ -21,6 +21,7 @@ public class GUI {
     private CardLayout mainPanelLayout;
     private JPanel menuPanel;
     private JPanel gamePanel;
+    private ArrayList<JButton> boardButtons;
     
      public GUI() {
         initializeFrame();
@@ -38,14 +39,14 @@ public class GUI {
         GridLayout boardLayout = new GridLayout(9, 9);
         boardPanel.setLayout(boardLayout);
 
-        ArrayList<JButton> buttons = new ArrayList<JButton>();
+        boardButtons = new ArrayList<JButton>();
         for (int x = 0; x < 9; x++) {
             for (int y = 0; y < 9; y++) {
                 JButton button = new JButton();
                 button.setFont(new Font("Arial", Font.BOLD, 20));
                 button.setBackground(Color.white);
                 boardPanel.add(button);
-                buttons.add(button);
+                boardButtons.add(button);
             }
         }
 
