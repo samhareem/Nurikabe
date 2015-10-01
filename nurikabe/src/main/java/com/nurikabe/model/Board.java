@@ -25,13 +25,11 @@ public class Board {
             return false;
         }
         for (int i = 0; i < boardInfo.size(); i++) {
-            this.board[i % 9][i / 9] = boardInfo.get(i);
+            this.board[i / 9][i % 9] = boardInfo.get(i);
         }
         numberOfMistakes = 0;
         return true;
     }
-    
-    
     
     public boolean isComplete() {
         for (int y = 0; y < board.length; y++) {

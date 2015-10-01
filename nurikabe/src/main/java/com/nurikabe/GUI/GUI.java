@@ -158,7 +158,9 @@ public class GUI {
         levelCombo = new JComboBox();
         levelCombo.setMaximumSize(new Dimension(200, 20));
         levelCombo.setAlignmentX(Component.CENTER_ALIGNMENT);
-        levelCombo.addItem(1);
+        for (int n = 1; n <= logic.getNumberOfLevels(); n++) {
+            levelCombo.addItem(n);
+        }
 
         JButton startButton = new JButton("Start");
         startButton.setAlignmentX(Component.CENTER_ALIGNMENT);

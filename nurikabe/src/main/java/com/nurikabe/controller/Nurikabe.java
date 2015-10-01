@@ -6,6 +6,7 @@
 package com.nurikabe.controller;
 import com.nurikabe.model.*;
 import com.nurikabe.GUI.*;
+import java.io.File;
 import java.util.ArrayList;
 /**
  *
@@ -139,6 +140,11 @@ public class Nurikabe {
             return false;
         }
     }
+    
+     public int getNumberOfLevels() {
+         return new File("src/main/resources/levels").list().length - 1;
+    }
+    
     
     public void resetBoard() {
         gameBoard.resetBoard();
