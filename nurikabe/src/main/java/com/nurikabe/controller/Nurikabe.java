@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public class Nurikabe {
     private final Board gameBoard;
+    private GUI gui;
     private final Reader reader;
     private final InputScanner scanner;
     
@@ -22,15 +23,31 @@ public class Nurikabe {
         this.scanner = new InputScanner();
     }
     
+    public void buildLevel(int level) {
+        setLevelFilePath("/levels/" + level + ".txt");
+        if (!setBoard()) {
+            System.out.println("Error with level file");
+            System.exit(0);
+        }
+        for (int indexX = 0; indexX < gameBoard.getBoardSize(); indexX++) {
+            for (int indexY = 0; indexY < gameBoard.getBoardSize(); indexY++) {
+                if (gameBoard.getGridStatus(indexX, indexY) != 0 && gameBoard.getGridStatus(indexX, indexY) != 1) {
+                    gui.setBoardButtonLabel((indexX+(9*indexY)), gameBoard.getGridStatus(indexX, indexY) - 1);
+                }
+            }
+        }
+        gui.updateMistakes(gameBoard.getNumberOfMistakes());
+    }
+    
     public void start() {
-        GUI gui = new GUI();
+        gui = new GUI(this);
         int level = chooseLevel();
         setLevelFilePath("/levels/" + level + ".txt");
         if (!setBoard()) {
             System.out.println("Error with level file");
             System.exit(0);
         }
-        gameBoard.printBoard();
+        printBoard();
         while (true) {   
             System.out.println("Choose x (1-9):");
             int x = getGridCoordinate();
@@ -46,7 +63,7 @@ public class Nurikabe {
             if (gameBoard.isComplete()) {
                 break;
             }
-            gameBoard.printBoard();
+            printBoard();
         }
         System.out.println("Game won!");
     }
@@ -95,6 +112,41 @@ public class Nurikabe {
             input = scanner.readInt();
         } catch (Exception noValidNumber) { return -1; }
         return input;
+    }
+    
+   private void printBoard() {
+        for (int indexY = 0; indexY < gameBoard.getBoardSize(); indexY++) {
+            for (int indexX = 0; indexX < gameBoard.getBoardSize(); indexX++) {
+                if (gameBoard.getGridStatus(indexX, indexY) == 0 || gameBoard.getGridStatus(indexX, indexY) == 1) {
+                    System.out.print("O ");
+                } else if (gameBoard.getGridStatus(indexX, indexY) == 100) {
+                    System.out.print("X ");
+                } else {
+                    System.out.print((gameBoard.getGridStatus(indexX, indexY) - 1) + " ");
+                }
+            }
+            System.out.print("\n");
+        }
+    }
+    
+    public boolean checkGrid(int indexX, int indexY) {
+        if (gameBoard.getGridStatus(indexX, indexY) == 0) {
+            gameBoard.markGrid(indexX, indexY);
+            return true;
+        } else {
+            gameBoard.addMistake();
+            gui.updateMistakes(gameBoard.getNumberOfMistakes());
+            return false;
+        }
+    }
+    
+    public void resetBoard() {
+        gameBoard.resetBoard();
+        gui.updateMistakes(gameBoard.getNumberOfMistakes());
+    }
+    
+    public boolean checkIfComplete() {
+        return gameBoard.isComplete();
     }
 }
 

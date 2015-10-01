@@ -25,35 +25,27 @@ public class Board {
             return false;
         }
         for (int i = 0; i < boardInfo.size(); i++) {
-            this.board[i / 9][i % 9] = boardInfo.get(i);
+            this.board[i % 9][i / 9] = boardInfo.get(i);
         }
+        numberOfMistakes = 0;
         return true;
     }
     
-    public void printBoard() {
-        for (int indexY = 0; indexY < this.board.length; indexY++) {
-            for (int indexX = 0; indexX < this.board[indexY].length; indexX++) {
-                if (this.board[indexY][indexX] == 0 || this.board[indexY][indexX] == 1) {
-                    System.out.print("O ");
-                } else if (this.board[indexY][indexX] == 100) {
-                    System.out.print("X ");
-                } else {
-                    System.out.print((this.board[indexY][indexX] - 1) + " ");
-                }
-            }
-            System.out.print("\n");
-        }
-    }
+    
     
     public boolean isComplete() {
-        for (int y = 0; y < 9; y++) {
-            for (int x = 0; x < 9; x++) {
+        for (int y = 0; y < board.length; y++) {
+            for (int x = 0; x < board.length; x++) {
                 if (board[y][x] == 0) {
                     return false;
                 }
             }
         }
         return true;
+    }
+    
+    public int getBoardSize() {
+        return this.board.length;
     }
     
     public int getGridStatus(int indexX, int indexY) {
@@ -74,5 +66,16 @@ public class Board {
     
     public void resetMistakes() {
         this.numberOfMistakes = 0;
+    }
+    
+    public void resetBoard() {
+        for (int y = 0; board.length < 9; y++) {
+            for (int x = 0; x < board.length; x++) {
+                if (board[y][x] == 100) {
+                    board[y][x] = 0;
+                }
+            }
+        }
+        numberOfMistakes = 0;
     }
 }
