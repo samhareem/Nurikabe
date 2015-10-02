@@ -67,13 +67,13 @@ public class Board {
     }
     
     public void resetBoard() {
-        for (int y = 0; board.length < 9; y++) {
+        for (int y = 0; y < board.length; y++) {
             for (int x = 0; x < board.length; x++) {
                 if (board[y][x] == 100) {
                     board[y][x] = 0;
                 }
             }
         }
-        numberOfMistakes = 0;
+        resetMistakes();
     }
 }

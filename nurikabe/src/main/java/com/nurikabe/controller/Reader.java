@@ -15,20 +15,11 @@ import java.util.ArrayList;
  * @author samharju
  */
 public class Reader {
-    private String filePath;
     
     public Reader() {
     }
     
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
-    }
-    
-    public String getFilePath() {
-        return this.filePath;
-    }
-    
-    public ArrayList<Integer> readFile() {
+    public ArrayList<Integer> readFile(String filePath) {
         BufferedReader in = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(filePath)));
         ArrayList<Integer> contents = new ArrayList<>();
         String input = null;
@@ -39,7 +30,7 @@ public class Reader {
             contents.add(Integer.parseInt(input));
             try {
                 input = in.readLine();
-            } catch (IOException ex) { System.out.println("Error with level info"); }
+            } catch (IOException | NullPointerException e) { System.out.println("Error with level info"); }
         }
         return contents;
     }

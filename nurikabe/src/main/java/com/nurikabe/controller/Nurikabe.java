@@ -22,9 +22,8 @@ public class Nurikabe {
         this.reader = new Reader();
     }
     
-    public void buildLevel(int level) {
-        setLevelFilePath("/levels/" + level + ".txt");
-        if (!setBoard()) {
+    public void buildLevel(int levelNumber) {
+        if (!setBoard(levelNumber)) {
             System.out.println("Error with level file");
             System.exit(0);
         }
@@ -42,12 +41,8 @@ public class Nurikabe {
         gui = new GUI(this);
     }    
     
-    private void setLevelFilePath(String path) {
-        reader.setFilePath(path);
-    }
-    
-    private boolean setBoard() {
-        ArrayList<Integer> boardInfo = reader.readFile();
+    private boolean setBoard(int level) {
+        ArrayList<Integer> boardInfo = reader.readFile("/levels/" + level + ".txt");
         return gameBoard.setBoard(boardInfo);
     }
     
@@ -66,7 +61,6 @@ public class Nurikabe {
      public int getNumberOfLevels() {
          return new File("src/main/resources/levels").list().length - 1;
     }
-    
     
     public void resetBoard() {
         gameBoard.resetBoard();

@@ -5,6 +5,7 @@
  */
 package com.nurikabe.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -37,24 +38,16 @@ public class ReaderTest {
     }
     
     @Test
-    public void filepathIsNullAtStart() {
-        assertEquals(testReader.getFilePath(), null);
-    }
-    
-    @Test
-    public void filepathIsSetCorrectly() {
-        String filepath = "filepath/test/file.txt";
-        testReader.setFilePath(filepath);
-        assertEquals(testReader.getFilePath(), filepath);
-    }
-    
-    @Test
     public void fileIsReadCorrectly() {
-        testReader.setFilePath("/test/test.txt");
-        ArrayList<Integer> testList = testReader.readFile();
+        ArrayList<Integer> testList = testReader.readFile("/test/test.txt");
         for (int i = 0; i < testList.size(); i++) {
             assertEquals(i, testList.get(i).intValue());
         }
+    }
+    
+    @Test(expected=NullPointerException.class)
+    public void nullFileCatchesException() {
+        testReader.readFile("Test string");
     }
     
     @After

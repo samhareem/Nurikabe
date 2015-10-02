@@ -100,7 +100,7 @@ public class GUI {
     }
 
     private void createBoardButtons() {
-        boardButtons = new ArrayList<JButton>();
+        boardButtons = new ArrayList<>();
         for (int x = 0; x < 9; x++) {
             for (int y = 0; y < 9; y++) {
                 JButton button = new JButton();

@@ -109,7 +109,26 @@ public class BoardTest {
         assertEquals(testBoard.isComplete(), false);
     }
     
+    @Test
+    public void resetBoardResetsMarkedGrids() {
+        ArrayList<Integer> testBoardInfo = new ArrayList<Integer>();
+        for (int i = 0; i < 81; i++) {
+            testBoardInfo.add(numGenerator.nextInt(20) + 1);
+        }
+        int unsolvedGrids = numGenerator.nextInt(20) + 1;
+        for (int a = 0; a < unsolvedGrids; a++) {
+            testBoardInfo.set(numGenerator.nextInt(79) + 1, 100);
+        }
+        testBoard.setBoard(testBoardInfo);
+        testBoard.resetBoard();
+        for (int y = 0; y < 9; y++) {
+            for (int x = 0; x < 9; x++) {
+                assertFalse(100 == testBoard.getGridStatus(y, x));
+            }
+        }
+    }
     @After
     public void tearDown() {
+        
     }
 }
