@@ -5,8 +5,8 @@
  */
 package com.nurikabe.controller;
 
-import java.io.IOException;
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,10 +18,11 @@ import static org.junit.Assert.*;
  *
  * @author samharju
  */
-public class ReaderTest {
-    private Reader testReader;
-    
-    public ReaderTest() {
+public class NurikabeTest {
+        Nurikabe testNurikabe;
+        
+    public NurikabeTest() {
+        
     }
     
     @BeforeClass
@@ -34,24 +35,17 @@ public class ReaderTest {
     
     @Before
     public void setUp() {
-        this.testReader = new Reader();
-    }
-    
-    @Test
-    public void fileIsReadCorrectly() {
-        ArrayList<Integer> testList = testReader.readFile("/test.txt");
-        for (int i = 0; i < testList.size(); i++) {
-            assertEquals(i, testList.get(i).intValue());
-        }
-    }
-    
-    @Test(expected=NullPointerException.class)
-    public void nullFileCatchesException() {
-        testReader.readFile("Test string");
+        testNurikabe = new Nurikabe();
+        ReaderTest test = new ReaderTest();
     }
     
     @After
     public void tearDown() {
+    }
+    
+    @Test
+    public void levelBuildsCorrectly() {
+        testNurikabe.buildLevel("");
     }
 
     // TODO add test methods here.

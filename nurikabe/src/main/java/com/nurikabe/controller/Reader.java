@@ -20,6 +20,7 @@ public class Reader {
     }
     
     public ArrayList<Integer> readFile(String filePath) {
+        System.out.println(this.getClass().getResource(filePath).getPath());
         BufferedReader in = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(filePath)));
         ArrayList<Integer> contents = new ArrayList<>();
         String input = null;
