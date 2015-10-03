@@ -45,7 +45,7 @@ public class NurikabeTest {
     
     @Test
     public void levelBuildsCorrectly() {
-        testNurikabe.buildLevel("");
+        testNurikabe.buildLevel(1);
     }
 
     // TODO add test methods here.
