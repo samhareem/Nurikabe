@@ -30,7 +30,7 @@ public class GUI {
     private ArrayList<JButton> boardButtons;
     private ActionListener buttonListener;
     private JLabel mistakeCounter;
-    JComboBox levelCombo;
+    private JComboBox levelCombo;
 
     public GUI(Nurikabe nurikabe) {
         this.logic = nurikabe;

@@ -36,17 +36,18 @@ public class NurikabeTest {
     @Before
     public void setUp() {
         testNurikabe = new Nurikabe();
-        ReaderTest test = new ReaderTest();
+        
     }
     
     @After
     public void tearDown() {
     }
     
-//    @Test
-//    public void levelBuildsCorrectly() {
-//        testNurikabe.buildLevel(1);
-//    }
+    @Test
+    public void levelBuildsCorrectly() {
+        testNurikabe.start();
+        testNurikabe.buildLevel(1);
+    }
 
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
