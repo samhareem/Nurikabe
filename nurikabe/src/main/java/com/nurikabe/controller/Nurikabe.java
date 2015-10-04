@@ -88,6 +88,9 @@ public class Nurikabe {
          return new File("src/main/resources/levels").list().length - 1;
     }
     
+    /**
+     * Resets all marked grids on the game board and sets number of mistakes to 0.    
+     */
     public void resetBoard() {
         gameBoard.resetBoard();
         gui.updateMistakes(gameBoard.getNumberOfMistakes());

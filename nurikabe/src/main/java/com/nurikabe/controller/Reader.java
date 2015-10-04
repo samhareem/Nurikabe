@@ -19,6 +19,12 @@ public class Reader {
     public Reader() {
     }
     
+    /**
+     * Reads resource determined by filePath parameter.
+     * 
+     * @param filePath  Path of resource file
+     * @return  ArrayList containing integers from the level file in order read.
+     */
     public ArrayList<Integer> readFile(String filePath) {
         System.out.println(this.getClass().getResource(filePath).getPath());
         BufferedReader in = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(filePath)));

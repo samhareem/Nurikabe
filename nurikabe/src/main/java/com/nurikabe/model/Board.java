@@ -20,6 +20,12 @@ public class Board {
         this.board = new int[9][9];
     }
     
+    /**
+     * Sets 9*9 game board with numbers in give ArrayList.
+     * 
+     * @param boardInfo Numbers used to set the board.
+     * @return false if does ArrayList size is incorrect, true otherwise
+     */
     public boolean setBoard(ArrayList<Integer> boardInfo) {
         if (boardInfo.size() != 81) {
             return false;
@@ -31,6 +37,11 @@ public class Board {
         return true;
     }
     
+    /**
+     * Checks whether the board is complete.
+     * 
+     * @return true if board is complete, false otherwise. 
+     */
     public boolean isComplete() {
         for (int y = 0; y < board.length; y++) {
             for (int x = 0; x < board.length; x++) {
@@ -50,6 +61,12 @@ public class Board {
         return this.board[indexY][indexX];
     }
     
+    /**
+     * Marks grid at location indexX, indexY as set.
+     * 
+     * @param indexX X coordinate of grid to be marked.
+     * @param indexY Y coordinate of grid to be marked.
+     */
     public void markGrid(int indexX, int indexY) {
         this.board[indexY][indexX] = 100;
     }
@@ -58,14 +75,25 @@ public class Board {
         return this.numberOfMistakes;
     }
     
+    /**
+     * Increase mistake counter by 1.
+     */
     public void addMistake() {
         this.numberOfMistakes++;
     }
     
+    /**
+     * Resets mistake counter to 0.
+     */
     public void resetMistakes() {
         this.numberOfMistakes = 0;
     }
     
+    /**
+     * Unmarks all set grids, and resets mistakes to 0.
+     * 
+     * @see Board#resetMistakes() 
+     */
     public void resetBoard() {
         for (int y = 0; y < board.length; y++) {
             for (int x = 0; x < board.length; x++) {
