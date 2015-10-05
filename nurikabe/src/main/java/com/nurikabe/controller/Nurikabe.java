@@ -30,10 +30,9 @@ public class Nurikabe {
      * @param   levelNumber  Level to be built, given by GUI
      *
      */
-    public void buildLevel(int levelNumber) {
+    public boolean buildLevel(int levelNumber) {
         if (!setBoard(levelNumber)) {
-            System.out.println("Error with level file");
-            System.exit(0);
+            return false;
         }
         for (int indexX = 0; indexX < gameBoard.getBoardSize(); indexX++) {
             for (int indexY = 0; indexY < gameBoard.getBoardSize(); indexY++) {
@@ -43,6 +42,7 @@ public class Nurikabe {
             }
         }
         gui.updateMistakes(gameBoard.getNumberOfMistakes());
+        return true;
     }
     
    /**
@@ -65,7 +65,7 @@ public class Nurikabe {
     *
     * @param    indexY  Y coordinate of grid being checked, given by GUI.
     *
-    * @return   Boolean specifying wheter move was correct (true) or incorrect (false)
+    * @return   Boolean specifying whether move was correct (true) or incorrect (false)
     */
     public boolean checkGrid(int indexX, int indexY) {
         if (gameBoard.getGridStatus(indexX, indexY) == 0) {

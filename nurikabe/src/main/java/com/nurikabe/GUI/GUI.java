@@ -41,7 +41,6 @@ public class GUI {
         setupAndStartGUI();
     }
 
-   
     private void setupBoardView() {
         gamePanel = new JPanel();
         gamePanel.setLayout(new BoxLayout(gamePanel, BoxLayout.Y_AXIS));
@@ -62,7 +61,7 @@ public class GUI {
         ActionListener resetListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent resetClick) {
-                for (JButton button: boardButtons) {
+                for (JButton button : boardButtons) {
                     if (button.isEnabled() == false) {
                         button.setEnabled(true);
                         button.setBackground(Color.white);
@@ -117,7 +116,7 @@ public class GUI {
                                 exitBoard();
                             }
                         }
-                    } 
+                    }
                 };
                 button.addActionListener(boardListener);
                 button.setFont(new Font("Arial", Font.BOLD, 20));
@@ -127,7 +126,7 @@ public class GUI {
             }
         }
     }
-    
+
     private int getButtonNumber(JButton button) {
         for (int index = 0; index < boardButtons.size(); index++) {
             JButton temp = boardButtons.get(index);
@@ -161,14 +160,19 @@ public class GUI {
         for (int n = 1; n <= logic.getNumberOfLevels(); n++) {
             levelCombo.addItem(n);
         }
+        levelCombo.addItem(4);
 
         JButton startButton = new JButton("Start");
         startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         ActionListener startListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent startClick) {
-                logic.buildLevel((int) levelCombo.getSelectedItem());
-                mainPanelLayout.last(mainPanel);
+                if (!logic.buildLevel((int) levelCombo.getSelectedItem())) {
+                    JOptionPane.showMessageDialog(frame, "Problem with level file.");
+                    return;
+                } else {
+                    mainPanelLayout.last(mainPanel);
+                }
             }
         };
         startButton.addActionListener(startListener);
@@ -206,21 +210,21 @@ public class GUI {
         frame = new JFrame("Nurikabe");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setSize(600, 600);
-        frame.setAutoRequestFocus(true); 
+        frame.setAutoRequestFocus(true);
     }
-    
+
     /**
      * Updates label specifying number of mistakes.
-     * 
+     *
      * @param numberOfMistakes Number to update the label to.
      */
     public void updateMistakes(int numberOfMistakes) {
         mistakeCounter.setText("Number of mistakes: " + numberOfMistakes);
     }
-    
+
     /**
      * Sets label of board button to specified number.
-     * 
+     *
      * @param buttonNumber Specifies button to update.
      * @param label Specifies what number to update the label to.
      */

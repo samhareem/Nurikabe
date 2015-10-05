@@ -45,9 +45,9 @@ public class ReaderTest {
         }
     }
     
-    @Test(expected=NullPointerException.class)
-    public void nullFileCatchesException() {
-        testReader.readFile("Test string");
+    @Test()
+    public void nullFileReturnsEmptyList() {
+        assertTrue(testReader.readFile("Invalid filepath").isEmpty());
     }
     
     @After

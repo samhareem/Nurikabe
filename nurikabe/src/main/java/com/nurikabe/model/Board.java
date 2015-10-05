@@ -27,7 +27,7 @@ public class Board {
      * @return false if does ArrayList size is incorrect, true otherwise
      */
     public boolean setBoard(ArrayList<Integer> boardInfo) {
-        if (boardInfo.size() != 81) {
+        if (boardInfo.isEmpty() || boardInfo.size() != 81) {
             return false;
         }
         for (int i = 0; i < boardInfo.size(); i++) {

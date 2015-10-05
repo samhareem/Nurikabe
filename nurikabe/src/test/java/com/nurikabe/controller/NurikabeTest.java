@@ -5,8 +5,8 @@
  */
 package com.nurikabe.controller;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Random;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -20,6 +20,7 @@ import static org.junit.Assert.*;
  */
 public class NurikabeTest {
         Nurikabe testNurikabe;
+        Reader testReader;
         
     public NurikabeTest() {
         
@@ -36,7 +37,7 @@ public class NurikabeTest {
     @Before
     public void setUp() {
         testNurikabe = new Nurikabe();
-        
+        testReader = new Reader();
     }
     
     @After
@@ -44,14 +45,30 @@ public class NurikabeTest {
     }
     
     @Test
-    public void levelBuildsCorrectly() {
+    public void validLevelReturnsTrue() {
+        testNurikabe.start();
+        assertTrue(testNurikabe.buildLevel(1));
+    }
+    
+    @Test
+    public void invalidLevelReturnsFalse() {
+        testNurikabe.start();
+        assertFalse(testNurikabe.buildLevel(4));
+    }
+    
+    @Test
+    public void checkGridMethodReturnsCorrectValue() {
+        ArrayList<Integer> values = testReader.readFile("/levels/1.txt");
+        Random numGenerator = new Random();
         testNurikabe.start();
         testNurikabe.buildLevel(1);
+        for (int tests = 0; tests < 10; tests++) {
+            int testIndex = numGenerator.nextInt(81);
+            if (values.get(testIndex) == 0) {
+                assertTrue(testNurikabe.checkGrid((testIndex % 9), (testIndex / 9)));
+            } else {
+                assertFalse(testNurikabe.checkGrid((testIndex % 9), (testIndex / 9)));
+            }
+        }
     }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
 }
