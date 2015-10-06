@@ -31,7 +31,13 @@ public class Gui {
     private ActionListener buttonListener;
     private JLabel mistakeCounter;
     private JComboBox levelCombo;
-
+    
+    /**
+     * 
+     * Constructor for Gui class. Sets up and starts GUI.
+     * 
+     * @param nurikabe  Nurikabe class to be used with the GUI.
+     */
     public Gui(Nurikabe nurikabe) {
         this.logic = nurikabe;
         initializeFrame();

@@ -6,7 +6,6 @@
 package com.nurikabe.controller;
 import com.nurikabe.model.*;
 import com.nurikabe.GUI.*;
-import com.sun.media.sound.ModelAbstractChannelMixer;
 import java.io.File;
 import java.util.ArrayList;
 /**
@@ -18,11 +17,16 @@ public class Nurikabe {
     private Gui gui;
     private final Reader reader;
     
+    
+    
     public static void main(String args[]) {
         Nurikabe game = new Nurikabe();
         game.start();
     }
     
+    /**
+     * Constructor for Nurikabe class, intializes gameBoard and reader.
+     */
     public Nurikabe() {
         this.gameBoard = new Board();
         this.reader = new Reader();
@@ -32,8 +36,9 @@ public class Nurikabe {
      * Updates the model and view of the game board according to the 
      * level number given by the GUI.
      *
-     * @param   levelNumber  Level to be built, given by Gui
-     *
+     * @param   levelNumber  Level to be built, given by GUI
+     * 
+     * @return  Returns true if level was built successfully, false otherwise
      */
     public boolean buildLevel(int levelNumber) {
         if (!setBoard(levelNumber)) {
@@ -51,7 +56,7 @@ public class Nurikabe {
     }
     
    /**
-    * Initialises Gui.    
+    * Initialises GUI.    
     */
     public void start() {
         gui = new Gui(this);
@@ -59,6 +64,9 @@ public class Nurikabe {
     
     private boolean setBoard(int level) {
         ArrayList<Integer> boardInfo = reader.readFile("/levels/" + level + ".txt");
+        if (boardInfo.isEmpty() || boardInfo.size() != 81) {
+            return false;
+        }
         return gameBoard.setBoard(boardInfo);
     }
     
@@ -93,7 +101,7 @@ public class Nurikabe {
     }
     
     /**
-     * Resets all marked grids on the game board and sets number of mistakes to 0.    
+     * Resets marked grids on the game board and sets number of mistakes to 0.    
      */
     public void resetBoard() {
         gameBoard.resetBoard();

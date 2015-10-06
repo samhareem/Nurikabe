@@ -27,10 +27,10 @@ public class Board {
      * @return false if does ArrayList size is incorrect, true otherwise
      */
     public boolean setBoard(ArrayList<Integer> boardInfo) {
-        if (boardInfo.isEmpty() || boardInfo.size() != 81) {
-            return false;
-        }
         for (int i = 0; i < boardInfo.size(); i++) {
+            if (boardInfo.get(i) < 0 || boardInfo.get(i) > 81) {
+                return false;
+            }
             this.board[i / 9][i % 9] = boardInfo.get(i);
         }
         numberOfMistakes = 0;

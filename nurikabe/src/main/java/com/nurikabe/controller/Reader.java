@@ -16,6 +16,9 @@ import java.util.ArrayList;
  */
 public class Reader {
     
+    /**
+     * Constructor method.
+     */
     public Reader() {
     }
     

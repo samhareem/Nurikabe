@@ -10,3 +10,9 @@ Nurikabe puzzles were first introduced by japanese publisher Nikoli in 1991. The
 
 ###Goals
 
+Create a Nurikabe game which:
+
+    1. Has support for multiple levels.
+    2. Keeps count of the amount of mistakes made by the user.
+    3. Records high scores for each level (to be implemented)
+    4. Allows the user to create levels of their own (to be implemented)
