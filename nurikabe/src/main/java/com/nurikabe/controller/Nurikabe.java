@@ -15,8 +15,13 @@ import java.util.ArrayList;
  */
 public class Nurikabe {
     private final Board gameBoard;
-    private GUI gui;
+    private Gui gui;
     private final Reader reader;
+    
+    public static void main(String args[]) {
+        Nurikabe game = new Nurikabe();
+        game.start();
+    }
     
     public Nurikabe() {
         this.gameBoard = new Board();
@@ -27,7 +32,7 @@ public class Nurikabe {
      * Updates the model and view of the game board according to the 
      * level number given by the GUI.
      *
-     * @param   levelNumber  Level to be built, given by GUI
+     * @param   levelNumber  Level to be built, given by Gui
      *
      */
     public boolean buildLevel(int levelNumber) {
@@ -46,11 +51,10 @@ public class Nurikabe {
     }
     
    /**
-    * Initialises GUI.
-    *
+    * Initialises Gui.    
     */
     public void start() {
-        gui = new GUI(this);
+        gui = new Gui(this);
     }    
     
     private boolean setBoard(int level) {
@@ -61,9 +65,9 @@ public class Nurikabe {
    /**
     * Checks grid at board position (x, y).
     *
-    * @param    indexX  X coordinate of grid being checked, given by GUI.
+    * @param    indexX  X coordinate of grid being checked, given by Gui.
     *
-    * @param    indexY  Y coordinate of grid being checked, given by GUI.
+    * @param    indexY  Y coordinate of grid being checked, given by Gui.
     *
     * @return   Boolean specifying whether move was correct (true) or incorrect (false)
     */

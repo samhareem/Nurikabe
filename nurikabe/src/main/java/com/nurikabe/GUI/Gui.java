@@ -18,7 +18,7 @@ import javax.swing.border.EmptyBorder;
  *
  * @author samharju
  */
-public class GUI {
+public class Gui {
 
     private Nurikabe logic;
     private JFrame frame;
@@ -32,7 +32,7 @@ public class GUI {
     private JLabel mistakeCounter;
     private JComboBox levelCombo;
 
-    public GUI(Nurikabe nurikabe) {
+    public Gui(Nurikabe nurikabe) {
         this.logic = nurikabe;
         initializeFrame();
         initializeMainPanel();
