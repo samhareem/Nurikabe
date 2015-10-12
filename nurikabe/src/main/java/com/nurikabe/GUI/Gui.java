@@ -166,7 +166,6 @@ public class Gui {
         for (int n = 1; n <= logic.getNumberOfLevels(); n++) {
             levelCombo.addItem(n);
         }
-        levelCombo.addItem(4);
 
         JButton startButton = new JButton("Start");
         startButton.setAlignmentX(Component.CENTER_ALIGNMENT);

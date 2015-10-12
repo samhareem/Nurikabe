@@ -6,7 +6,6 @@
 package com.nurikabe.controller;
 import com.nurikabe.model.*;
 import com.nurikabe.GUI.*;
-import java.io.File;
 import java.util.ArrayList;
 /**
  *
@@ -16,6 +15,7 @@ public class Nurikabe {
     private final Board gameBoard;
     private Gui gui;
     private final Reader reader;
+    private final int numberOfLevels = 2;
     
     
     
@@ -47,7 +47,7 @@ public class Nurikabe {
         for (int indexX = 0; indexX < gameBoard.getBoardSize(); indexX++) {
             for (int indexY = 0; indexY < gameBoard.getBoardSize(); indexY++) {
                 if (gameBoard.getGridStatus(indexX, indexY) != 0 && gameBoard.getGridStatus(indexX, indexY) != 1) {
-                    gui.setBoardButtonLabel((indexX+(9*indexY)), gameBoard.getGridStatus(indexX, indexY) - 1);
+                    gui.setBoardButtonLabel((indexX + (9 * indexY)), gameBoard.getGridStatus(indexX, indexY) - 1);
                 }
             }
         }
@@ -97,7 +97,7 @@ public class Nurikabe {
     * @return Number of levels 
     */
     public int getNumberOfLevels() {
-         return new File("src/main/resources/levels").list().length - 1;
+        return this.numberOfLevels;
     }
     
     /**

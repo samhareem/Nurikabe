@@ -34,7 +34,7 @@ public class Reader {
             in = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(filePath)));
         } catch (NullPointerException e) { return new ArrayList<Integer>(); }
         ArrayList<Integer> contents = new ArrayList<>();
-        String input = null;
+        String input;
         try {
             input = in.readLine();
         } catch (IOException e) { return contents; }
