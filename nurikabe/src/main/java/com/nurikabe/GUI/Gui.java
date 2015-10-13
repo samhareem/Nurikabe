@@ -15,6 +15,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
 /**
+ * The class contains all the GUI information for the Nurikabe program.
  *
  * @author samharju
  */

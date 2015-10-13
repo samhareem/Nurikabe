@@ -8,6 +8,8 @@ package com.nurikabe.model;
 import java.util.ArrayList;
 
 /**
+ * The class contains puzzle board information and methods that modify or 
+ * return said information.
  *
  * @author samharju
  */
@@ -15,6 +17,9 @@ public class Board {
     private final int[][] board;
     private int numberOfMistakes;
     
+    /**
+     * Constructor method, initialises board and numberOfMistakes variables.
+     */
     public Board() {
         this.numberOfMistakes = 0;
         this.board = new int[9][9];

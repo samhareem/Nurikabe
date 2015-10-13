@@ -72,7 +72,7 @@ public class BoardTest {
     
     @Test
     public void setBoardMethodInitializesBoardArrayCorrectly() {
-        int testNumber = numGenerator.nextInt(100);
+        int testNumber = numGenerator.nextInt(81);
         ArrayList<Integer> testBoardInfo = new ArrayList<Integer>();
         for (int i = 0; i < 81; i++) {
             testBoardInfo.add(testNumber);

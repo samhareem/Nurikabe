@@ -1,0 +1,5 @@
+Harjoitustyönäni toteutin Nurikabe-pulmapelin. Ohjelmassa on graafinen käyttöliittymä jolla käyttäjä saa valittua ja avattua eri pulmia, sekä ratkottua näitä. Ohjelma pitää kirjaa käyttäjän tekemistä virheistä. Eri pulmat on tallennettu .txt tiedostoihin, ja käyttäjät voivat myös helposti lisätä pulmia ohjelmaan. Ohjelma ei kuitenkaan varmista että tallennetut pulmat seuraavat Nurikabe-pelin sääntöjä.
+
+Yritin parhaani mukaan toteuttaa ohjelmani Model-View-Controller periaatetta kunnioittaen. Nurikabe luokka toimii controllerina, joka hakee tietoa modelina toimivalta Board luokalta, ja päivittää tätä tarvittaessa. Viewna toimii käyttöliittymä. Muutamia ongelmia lukuunottamatta (esim. Listenereiden suuri määrä, jotkin päällekkäisyydet koodissa) tämä toimii hyvin.
+
+Ohjelmistoa saa vielä tarvittaessa laajennettua, esim. pistetauluilla. Tarkoituksenani on myös muuttaa pulmien tallennusmuoto tekstitiedostoista serialisoiduiksi olioiksi. Tämän avulla olisi myös helpompi toteuttaa pulmien luonti käyttäjän toimesta.

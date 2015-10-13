@@ -7,8 +7,11 @@ package com.nurikabe.controller;
 import com.nurikabe.model.*;
 import com.nurikabe.GUI.*;
 import java.util.ArrayList;
+
 /**
- *
+ * The class contains the main method for the Nurikabe program, and other 
+ * methods used to get and modify data in the Board class. 
+ * 
  * @author samharju
  */
 public class Nurikabe {
@@ -18,7 +21,11 @@ public class Nurikabe {
     private final int numberOfLevels = 2;
     
     
-    
+    /**
+     * Main method for the program.
+     * 
+     * @param args Currently not implemented.
+     */
     public static void main(String args[]) {
         Nurikabe game = new Nurikabe();
         game.start();

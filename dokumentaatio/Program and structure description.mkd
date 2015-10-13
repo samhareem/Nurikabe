@@ -1,0 +1,26 @@
+##Nurikabe
+
+###About:
+
+Nurikabe puzzles were first introduced by japanese publisher Nikoli in 1991. The puzzles consist of a rectangular grid of cells, with certain cells containing a number. These numbers specify how many white cells are connected to the cell containing the number, forming what is called a "wall". To solve the puzzle, the player must paint some cells black, creating what is called the "stream", according to the following rules:
+
+    1. Each numbered cell forms a part of a wall, the number specifying the number of cells in the wall.
+    2. Each wall contains one numbered cell.
+    3. The stream must be continuous (each puzzle will only have one stream) and is not allowed to contain any "pools", meaning areas consisting of 2x2 or more black cells.
+
+###Goals
+
+Create a Nurikabe game which:
+
+    1. Has support for multiple levels.
+    2. Keeps count of the amount of mistakes made by the user.
+    3. Records high scores for each level (to be implemented)
+    4. Allows the user to create levels of their own (to be implemented)
+    
+###Program structure
+
+The program has three packages; model, GUI and controller. These roughtly correspond with a Model-View-Controller design principle. The controller package contains the Nurikabe and Reader classes. The Nurikabe class ontains the main method of the program and acts as the controller class. It contains methods for updating and fetching information from the model. The Reader class is a utility used by the Nurikabe class, which is used to read text files containing puzzle information.
+
+The Board class, located in the model package, contains information about the puzzle being solved. It's methods are primarily concerned with returning information about the current board and updating it if necessary.
+
+The Gui class in the GUI package contains all information about the user interface. It communicates with the Nurikabe class, turning user actions (choosing and starting a level, solving the puzzle) into data actions affecting the board.  

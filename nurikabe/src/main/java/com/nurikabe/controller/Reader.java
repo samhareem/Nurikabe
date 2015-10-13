@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
+ * This class is used to read and return puzzle information from .txt files. 
  *
  * @author samharju
  */
