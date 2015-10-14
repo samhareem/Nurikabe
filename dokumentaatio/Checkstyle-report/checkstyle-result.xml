@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="5.7">
+<file name="/home/samharju/Documents/Koulu/Tietojenkäsittelytiede/Ohjelmoinnin harjoitustyö/Nurikabe/nurikabe/src/main/java/com/nurikabe/gui/Gui.java">
+</file>
+<file name="/home/samharju/Documents/Koulu/Tietojenkäsittelytiede/Ohjelmoinnin harjoitustyö/Nurikabe/nurikabe/src/main/java/com/nurikabe/controller/Reader.java">
+</file>
+<file name="/home/samharju/Documents/Koulu/Tietojenkäsittelytiede/Ohjelmoinnin harjoitustyö/Nurikabe/nurikabe/src/main/java/com/nurikabe/controller/Nurikabe.java">
+</file>
+<file name="/home/samharju/Documents/Koulu/Tietojenkäsittelytiede/Ohjelmoinnin harjoitustyö/Nurikabe/nurikabe/src/main/java/com/nurikabe/model/Board.java">
+</file>
+</checkstyle>

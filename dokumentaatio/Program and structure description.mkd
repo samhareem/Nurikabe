@@ -2,20 +2,27 @@
 
 ###About:
 
-Nurikabe puzzles were first introduced by japanese publisher Nikoli in 1991. The puzzles consist of a rectangular grid of cells, with certain cells containing a number. These numbers specify how many white cells are connected to the cell containing the number, forming what is called a "wall". To solve the puzzle, the player must paint some cells black, creating what is called the "stream", according to the following rules:
+Nurikabe puzzles were first introduced by japanese publisher Nikoli in 1991. The puzzles consist of a rectangular grid of cells, with certain cells containing a number. These numbers specify how many white cells are connected to the cell containing the number, forming what is called a "wall". To solve the puzzle, the player must paint cells black, creating a "stream" that runs through the puzzle board and separates it into "islands" of white cells.
 
-    1. Each numbered cell forms a part of a wall, the number specifying the number of cells in the wall.
-    2. Each wall contains one numbered cell.
-    3. The stream must be continuous (each puzzle will only have one stream) and is not allowed to contain any "pools", meaning areas consisting of 2x2 or more black cells.
+The program offers a GUI that allows the user to select one of the available puzzles and then solve it. Users can also add new puzzles to the program using text files, but this requiers them to rebuild the code.
 
-###Goals
+###Users:
 
-Create a Nurikabe game which:
+Solvers (basic users): Can use the program to solve the available puzzles.
 
-    1. Has support for multiple levels.
-    2. Keeps count of the amount of mistakes made by the user.
-    3. Records high scores for each level (to be implemented)
-    4. Allows the user to create levels of their own (to be implemented)
+Creators (advanced users): Can add puzzles to the program and send the updated version to other users, or send .txt files with the puzzle information to other users. 
+
+###Features:
+
+Version 1.0 of Nurikabe supports:
+
+    1. Multiple levels, more of which can be added via text files.
+    2. Score keeping, which tracks how many mistakes the user has made.
+
+Features to be implemented later on:
+
+    1. Record high scores for each level
+    2. Allow the user to create levels of their own 
     
 ###Program structure
 

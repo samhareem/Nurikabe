@@ -1,6 +1,6 @@
 package com.nurikabe.controller;
+import com.nurikabe.gui.Gui;
 import com.nurikabe.model.*;
-import com.nurikabe.GUI.*;
 import java.util.ArrayList;
 
 /**

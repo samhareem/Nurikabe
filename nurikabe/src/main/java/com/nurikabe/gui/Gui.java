@@ -1,4 +1,4 @@
-package com.nurikabe.GUI;
+package com.nurikabe.gui;
 
 import com.nurikabe.controller.Nurikabe;
 import javax.swing.*;
@@ -8,14 +8,11 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
-
 /**
  * The class contains all the GUI information for the Nurikabe program.
- *
  * @author samharju
  */
 public class Gui {
-
     private Nurikabe logic;
     private JFrame frame;
     private JPanel mainPanel;
@@ -27,11 +24,8 @@ public class Gui {
     private ActionListener buttonListener;
     private JLabel mistakeCounter;
     private JComboBox levelCombo;
-    
-    /**
-     v* 
+    /** 
      * Constructor for Gui class. Sets up and starts GUI.
-     * 
      * @param nurikabe  Nurikabe class to be used with the GUI.
      */
     public Gui(Nurikabe nurikabe) {
@@ -42,19 +36,15 @@ public class Gui {
         setupBoardView();
         setupAndStartGUI();
     }
-    
     /**
      * Updates label specifying number of mistakes.
-     *
      * @param numberOfMistakes Number to update the label to.
      */
     public void updateMistakes(int numberOfMistakes) {
         mistakeCounter.setText("Number of mistakes: " + numberOfMistakes);
     }
-
     /**
      * Sets label of board button to specified number.
-     *
      * @param buttonNumber Specifies button to update.
      * @param label Specifies what number to update the label to.
      */
@@ -79,20 +69,16 @@ public class Gui {
     private void setupMainMenu() {
         menuPanel = new JPanel();
         menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
-
         JLabel titleLabel = new JLabel("Super Ultra Mega-good Nurikabe");
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-
         JLabel levelComboLabel = new JLabel("Choose level:");
         levelComboLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-
         levelCombo = new JComboBox();
         levelCombo.setMaximumSize(new Dimension(200, 20));
         levelCombo.setAlignmentX(Component.CENTER_ALIGNMENT);
         for (int n = 1; n <= logic.getNumberOfLevels(); n++) {
             levelCombo.addItem(n);
         }
-
         JButton startButton = new JButton("Start");
         startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         ActionListener startListener = new ActionListener() {
@@ -100,24 +86,19 @@ public class Gui {
             public void actionPerformed(ActionEvent startClick) {
                 if (!logic.buildLevel((int) levelCombo.getSelectedItem())) {
                     JOptionPane.showMessageDialog(frame, "Problem with level file.");
-                    return;
                 } else {
                     mainPanelLayout.last(mainPanel);
                 }
             }
         };
         startButton.addActionListener(startListener);
-
         JButton quitButton = new JButton("Quit");
         quitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         ActionListener quitListener = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent quitClick) {
-                frame.dispose();
-            }
+            public void actionPerformed(ActionEvent quitClick) { frame.dispose(); } 
         };
         quitButton.addActionListener(quitListener);
-
         menuPanel.add(Box.createVerticalStrut(10));
         menuPanel.add(titleLabel);
         menuPanel.add(Box.createVerticalStrut(50));
@@ -130,23 +111,17 @@ public class Gui {
         menuPanel.add(quitButton);
         menuPanel.add(Box.createVerticalStrut(10));
     }
-
     private void setupBoardView() {
         gamePanel = new JPanel();
         gamePanel.setLayout(new BoxLayout(gamePanel, BoxLayout.Y_AXIS));
-
         boardPanel = new JPanel();
         GridLayout boardLayout = new GridLayout(9, 9);
         boardPanel.setLayout(boardLayout);
-
         createBoardButtons();
-
         JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.X_AXIS));
         bottomPanel.setBorder(new CompoundBorder(bottomPanel.getBorder(), new EmptyBorder(10, 10, 10, 10)));
-
         mistakeCounter = new JLabel("Number of mistakes: 0");
-
         JButton resetButton = new JButton("Reset");
         ActionListener resetListener = new ActionListener() {
             @Override
@@ -161,26 +136,20 @@ public class Gui {
             }
         };
         resetButton.addActionListener(resetListener);
-
         JButton exitButton = new JButton("Exit");
         ActionListener exitListener = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent exitClick) {
-                exitBoard();
-            }
+            public void actionPerformed(ActionEvent exitClick) { exitBoard(); } 
         };
         exitButton.addActionListener(exitListener);
-
         bottomPanel.add(mistakeCounter);
         bottomPanel.add(Box.createHorizontalGlue());
         bottomPanel.add(resetButton);
         bottomPanel.add(Box.createHorizontalGlue());
         bottomPanel.add(exitButton);
-
         gamePanel.add(boardPanel);
         gamePanel.add(bottomPanel);
     }
-    
     private void createBoardButtons() {
         boardButtons = new ArrayList<>();
         for (int x = 0; x < 9; x++) {
@@ -194,10 +163,7 @@ public class Gui {
                             JButton sourceButton = (JButton) boardClick.getSource();
                             sourceButton.setBackground(Color.black);
                             sourceButton.setEnabled(false);
-                            if (logic.checkIfComplete()) {
-                                JOptionPane.showMessageDialog(frame, "You win!");
-                                exitBoard();
-                            }
+                            if (logic.checkIfComplete()) { JOptionPane.showMessageDialog(frame, "You win!"); exitBoard(); }
                         }
                     }
                 };
@@ -209,7 +175,6 @@ public class Gui {
             }
         }
     }
-    
     private int getButtonNumber(JButton button) {
         for (int index = 0; index < boardButtons.size(); index++) {
             JButton temp = boardButtons.get(index);
@@ -219,14 +184,12 @@ public class Gui {
         }
         return -1;
     }
-    
     private void exitBoard() {
         mainPanelLayout.first(mainPanel);
         boardButtons.clear();
         boardPanel.removeAll();
         createBoardButtons();
     }
-
     private void setupAndStartGUI() {
         mainPanel.add(menuPanel);
         mainPanel.add(gamePanel);
