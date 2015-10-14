@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.nurikabe.GUI;
 
 import com.nurikabe.controller.Nurikabe;
@@ -34,7 +29,7 @@ public class Gui {
     private JComboBox levelCombo;
     
     /**
-     * 
+     v* 
      * Constructor for Gui class. Sets up and starts GUI.
      * 
      * @param nurikabe  Nurikabe class to be used with the GUI.
@@ -47,110 +42,40 @@ public class Gui {
         setupBoardView();
         setupAndStartGUI();
     }
-
-    private void setupBoardView() {
-        gamePanel = new JPanel();
-        gamePanel.setLayout(new BoxLayout(gamePanel, BoxLayout.Y_AXIS));
-
-        boardPanel = new JPanel();
-        GridLayout boardLayout = new GridLayout(9, 9);
-        boardPanel.setLayout(boardLayout);
-
-        createBoardButtons();
-
-        JPanel bottomPanel = new JPanel();
-        bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.X_AXIS));
-        bottomPanel.setBorder(new CompoundBorder(bottomPanel.getBorder(), new EmptyBorder(10, 10, 10, 10)));
-
-        mistakeCounter = new JLabel("Number of mistakes: 0");
-
-        JButton resetButton = new JButton("Reset");
-        ActionListener resetListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent resetClick) {
-                for (JButton button : boardButtons) {
-                    if (button.isEnabled() == false) {
-                        button.setEnabled(true);
-                        button.setBackground(Color.white);
-                    }
-                }
-                logic.resetBoard();
-            }
-        };
-        resetButton.addActionListener(resetListener);
-
-        JButton exitButton = new JButton("Exit");
-        ActionListener exitListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent exitClick) {
-                exitBoard();
-            }
-        };
-        exitButton.addActionListener(exitListener);
-
-        bottomPanel.add(mistakeCounter);
-        bottomPanel.add(Box.createHorizontalGlue());
-        bottomPanel.add(resetButton);
-        bottomPanel.add(Box.createHorizontalGlue());
-        bottomPanel.add(exitButton);
-
-        gamePanel.add(boardPanel);
-        gamePanel.add(bottomPanel);
+    
+    /**
+     * Updates label specifying number of mistakes.
+     *
+     * @param numberOfMistakes Number to update the label to.
+     */
+    public void updateMistakes(int numberOfMistakes) {
+        mistakeCounter.setText("Number of mistakes: " + numberOfMistakes);
     }
 
-    private void exitBoard() {
-        mainPanelLayout.first(mainPanel);
-        boardButtons.clear();
-        boardPanel.removeAll();
-        createBoardButtons();
+    /**
+     * Sets label of board button to specified number.
+     *
+     * @param buttonNumber Specifies button to update.
+     * @param label Specifies what number to update the label to.
+     */
+    public void setBoardButtonLabel(int buttonNumber, int label) {
+        JButton buttonToSet = boardButtons.get(buttonNumber);
+        buttonToSet.setText("" + label);
     }
-
-    private void createBoardButtons() {
-        boardButtons = new ArrayList<>();
-        for (int x = 0; x < 9; x++) {
-            for (int y = 0; y < 9; y++) {
-                JButton button = new JButton();
-                ActionListener boardListener = new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent boardClick) {
-                        int buttonNumber = getButtonNumber((JButton) boardClick.getSource());
-                        if (logic.checkGrid(buttonNumber % 9, buttonNumber / 9)) {
-                            JButton sourceButton = (JButton) boardClick.getSource();
-                            sourceButton.setBackground(Color.black);
-                            sourceButton.setEnabled(false);
-                            if (logic.checkIfComplete()) {
-                                JOptionPane.showMessageDialog(frame, "You win!");
-                                exitBoard();
-                            }
-                        }
-                    }
-                };
-                button.addActionListener(boardListener);
-                button.setFont(new Font("Arial", Font.BOLD, 20));
-                button.setBackground(Color.white);
-                boardPanel.add(button);
-                boardButtons.add(button);
-            }
-        }
+    
+    private void initializeFrame() throws HeadlessException {
+        frame = new JFrame("Nurikabe");
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setSize(600, 600);
+        frame.setAutoRequestFocus(true);
     }
-
-    private int getButtonNumber(JButton button) {
-        for (int index = 0; index < boardButtons.size(); index++) {
-            JButton temp = boardButtons.get(index);
-            if (button == temp) {
-                return index;
-            }
-        }
-        return -1;
+    
+    private void initializeMainPanel() {
+        mainPanel = new JPanel();
+        mainPanelLayout = new CardLayout();
+        mainPanel.setLayout(mainPanelLayout);
     }
-
-    private void setupAndStartGUI() {
-        mainPanel.add(menuPanel);
-        mainPanel.add(gamePanel);
-        frame.add(mainPanel);
-        frame.setVisible(true);
-    }
-
+    
     private void setupMainMenu() {
         menuPanel = new JPanel();
         menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
@@ -206,36 +131,106 @@ public class Gui {
         menuPanel.add(Box.createVerticalStrut(10));
     }
 
-    private void initializeMainPanel() {
-        mainPanel = new JPanel();
-        mainPanelLayout = new CardLayout();
-        mainPanel.setLayout(mainPanelLayout);
+    private void setupBoardView() {
+        gamePanel = new JPanel();
+        gamePanel.setLayout(new BoxLayout(gamePanel, BoxLayout.Y_AXIS));
+
+        boardPanel = new JPanel();
+        GridLayout boardLayout = new GridLayout(9, 9);
+        boardPanel.setLayout(boardLayout);
+
+        createBoardButtons();
+
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.X_AXIS));
+        bottomPanel.setBorder(new CompoundBorder(bottomPanel.getBorder(), new EmptyBorder(10, 10, 10, 10)));
+
+        mistakeCounter = new JLabel("Number of mistakes: 0");
+
+        JButton resetButton = new JButton("Reset");
+        ActionListener resetListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent resetClick) {
+                for (JButton button : boardButtons) {
+                    if (button.isEnabled() == false) {
+                        button.setEnabled(true);
+                        button.setBackground(Color.white);
+                    }
+                }
+                logic.resetBoard();
+            }
+        };
+        resetButton.addActionListener(resetListener);
+
+        JButton exitButton = new JButton("Exit");
+        ActionListener exitListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent exitClick) {
+                exitBoard();
+            }
+        };
+        exitButton.addActionListener(exitListener);
+
+        bottomPanel.add(mistakeCounter);
+        bottomPanel.add(Box.createHorizontalGlue());
+        bottomPanel.add(resetButton);
+        bottomPanel.add(Box.createHorizontalGlue());
+        bottomPanel.add(exitButton);
+
+        gamePanel.add(boardPanel);
+        gamePanel.add(bottomPanel);
+    }
+    
+    private void createBoardButtons() {
+        boardButtons = new ArrayList<>();
+        for (int x = 0; x < 9; x++) {
+            for (int y = 0; y < 9; y++) {
+                JButton button = new JButton();
+                ActionListener boardListener = new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent boardClick) {
+                        int buttonNumber = getButtonNumber((JButton) boardClick.getSource());
+                        if (logic.checkGrid(buttonNumber % 9, buttonNumber / 9)) {
+                            JButton sourceButton = (JButton) boardClick.getSource();
+                            sourceButton.setBackground(Color.black);
+                            sourceButton.setEnabled(false);
+                            if (logic.checkIfComplete()) {
+                                JOptionPane.showMessageDialog(frame, "You win!");
+                                exitBoard();
+                            }
+                        }
+                    }
+                };
+                button.addActionListener(boardListener);
+                button.setFont(new Font("Arial", Font.BOLD, 20));
+                button.setBackground(Color.white);
+                boardPanel.add(button);
+                boardButtons.add(button);
+            }
+        }
+    }
+    
+    private int getButtonNumber(JButton button) {
+        for (int index = 0; index < boardButtons.size(); index++) {
+            JButton temp = boardButtons.get(index);
+            if (button == temp) {
+                return index;
+            }
+        }
+        return -1;
+    }
+    
+    private void exitBoard() {
+        mainPanelLayout.first(mainPanel);
+        boardButtons.clear();
+        boardPanel.removeAll();
+        createBoardButtons();
     }
 
-    private void initializeFrame() throws HeadlessException {
-        frame = new JFrame("Nurikabe");
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(600, 600);
-        frame.setAutoRequestFocus(true);
-    }
-
-    /**
-     * Updates label specifying number of mistakes.
-     *
-     * @param numberOfMistakes Number to update the label to.
-     */
-    public void updateMistakes(int numberOfMistakes) {
-        mistakeCounter.setText("Number of mistakes: " + numberOfMistakes);
-    }
-
-    /**
-     * Sets label of board button to specified number.
-     *
-     * @param buttonNumber Specifies button to update.
-     * @param label Specifies what number to update the label to.
-     */
-    public void setBoardButtonLabel(int buttonNumber, int label) {
-        JButton buttonToSet = boardButtons.get(buttonNumber);
-        buttonToSet.setText("" + label);
+    private void setupAndStartGUI() {
+        mainPanel.add(menuPanel);
+        mainPanel.add(gamePanel);
+        frame.add(mainPanel);
+        frame.setVisible(true);
     }
 }

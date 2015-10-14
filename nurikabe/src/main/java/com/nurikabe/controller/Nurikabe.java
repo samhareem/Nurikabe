@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.nurikabe.controller;
 import com.nurikabe.model.*;
 import com.nurikabe.GUI.*;
@@ -40,6 +35,13 @@ public class Nurikabe {
     }
     
     /**
+    * Initialises GUI.    
+    */
+    public void start() {
+        gui = new Gui(this);
+    }
+    
+    /**
      * Updates the model and view of the game board according to the 
      * level number given by the GUI.
      *
@@ -62,22 +64,7 @@ public class Nurikabe {
         return true;
     }
     
-   /**
-    * Initialises GUI.    
-    */
-    public void start() {
-        gui = new Gui(this);
-    }    
-    
-    private boolean setBoard(int level) {
-        ArrayList<Integer> boardInfo = reader.readFile("/levels/" + level + ".txt");
-        if (boardInfo.isEmpty() || boardInfo.size() != 81) {
-            return false;
-        }
-        return gameBoard.setBoard(boardInfo);
-    }
-    
-   /**
+    /**
     * Checks grid at board position (x, y).
     *
     * @param    indexX  X coordinate of grid being checked, given by Gui.
@@ -98,13 +85,15 @@ public class Nurikabe {
     }
     
     /**
-    *
-    * Returns number of files in level folder.
-    * 
-    * @return Number of levels 
-    */
-    public int getNumberOfLevels() {
-        return this.numberOfLevels;
+     * 
+     * Checks to see if puzzle is complete.
+     * 
+     * @see Board#isComplete()
+     * 
+     * @return True if puzzle is solved, otherwise false
+     */
+    public boolean checkIfComplete() {
+        return gameBoard.isComplete();
     }
     
     /**
@@ -116,15 +105,21 @@ public class Nurikabe {
     }
     
     /**
-     * 
-     * Checks to see if puzzle is complete.
-     * 
-     * @see Board#isComplete()
-     * 
-     * @return True if puzzle is solved, otherwise false
-     */
-    public boolean checkIfComplete() {
-        return gameBoard.isComplete();
+    *
+    * Returns number of files in level folder.
+    * 
+    * @return Number of levels 
+    */
+    public int getNumberOfLevels() {
+        return this.numberOfLevels;
+    }
+    
+    private boolean setBoard(int level) {
+        ArrayList<Integer> boardInfo = reader.readFile("/levels/" + level + ".txt");
+        if (boardInfo.isEmpty() || boardInfo.size() != 81) {
+            return false;
+        }
+        return gameBoard.setBoard(boardInfo);
     }
 }
 
